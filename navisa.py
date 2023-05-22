@@ -1,2 +1,2 @@
 def methode():
-    return ("Iets van Navisa")
+    return ("Iets van navisa")
