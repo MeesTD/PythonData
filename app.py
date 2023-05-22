@@ -1,5 +1,6 @@
 from flask import Flask
 import mees
+import felixbestand
 
 app = Flask(__name__)
 
@@ -11,3 +12,7 @@ def hello_world():
 @app.route("/mees")
 def mees2():
     return mees.methode()
+
+@app.route("/felix")
+def felixmethode():
+    return felixbestand.methode()
