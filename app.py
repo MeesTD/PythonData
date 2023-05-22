@@ -1,6 +1,7 @@
 from flask import Flask
 import mees
 import felixbestand
+import rhea
 
 app = Flask(__name__)
 
@@ -16,3 +17,7 @@ def mees2():
 @app.route("/felix")
 def felixmethode():
     return felixbestand.methode()
+
+@app.route("/rhea")
+def rheaethode():
+    return rhea.methode()
