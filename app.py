@@ -2,6 +2,7 @@ from flask import Flask
 import mees
 import felixbestand
 import rhea
+import navisa
 
 app = Flask(__name__)
 
@@ -21,3 +22,7 @@ def felixmethode():
 @app.route("/rhea")
 def rheaethode():
     return rhea.methode()
+
+@app.route("/navisa")
+def navisa2():
+    return navisa.methode()
