@@ -5,23 +5,29 @@ import numpy as np
 
 totalprice = 0
 counter = 0
-avprices = []
+yplot = []
+xplot = []
 
-workDir = './airbnbprices'
-for file in os.listdir(workDir): 
-    data = pd.read_csv(os.path.join(workDir, file))
+workDir = './airbnbprices' # pathway naar gewenste map
+
+for file in sorted(os.listdir(workDir)): # geef alle files in map
+    data = pd.read_csv(os.path.join(workDir, file)) # open alle files in map
+    name = os.path.splitext(file)[0][:3]
 
     for r,rij in data.iterrows(): # wil je alleen rij naam, moet je een tweede argument toevoegen. 
         if rij["room_type"] == "Private room":
             totalprice += rij["realSum"]
             counter += 1
     
+    
     average = totalprice / counter
-    avprices.append(average)
+    yplot.append(average)
+    xplot.append(name)
+    lab_x = [i for i in range(len(xplot))]
 
-plt.hist(x=avprices, bins=10, alpha=0.5, rwidth=0.85)
-plt.grid(axis='y', alpha=0.75)
-plt.xlabel('City amount')
+plt.bar(lab_x, yplot)
+plt.xticks(lab_x, xplot)
+plt.xlabel('City')
 plt.ylabel('Average Prices')
 plt.title('Average Airbnb private room prices per city')
 plt.legend()
