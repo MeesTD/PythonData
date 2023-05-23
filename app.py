@@ -32,3 +32,7 @@ def navisa2():
 def meesdata():
     return firstdata.methode()
 
+@app.route("/getcity/<city>/<periode>")
+def getcity(city,periode):
+    return firstdata.get_city(city,periode)
+
