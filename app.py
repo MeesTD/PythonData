@@ -3,6 +3,7 @@ import mees
 import felixbestand
 import rhea
 import navisa
+import firstdata
 
 app = Flask(__name__)
 
@@ -26,3 +27,8 @@ def rheaethode():
 @app.route("/navisa")
 def navisa2():
     return navisa.methode()
+
+@app.route("/datamees")
+def meesdata():
+    return firstdata.methode()
+
