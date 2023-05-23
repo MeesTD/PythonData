@@ -12,7 +12,7 @@ workDir = './airbnbprices' # pathway naar gewenste map
 
 for file in sorted(os.listdir(workDir)): # geef alle files in map
     data = pd.read_csv(os.path.join(workDir, file)) # open alle files in map
-    name = os.path.splitext(file)[0][:3]
+    name = os.path.splitext(file)[0][:3] # random comment
 
     for r,rij in data.iterrows(): # wil je alleen rij naam, moet je een tweede argument toevoegen. 
         if rij["room_type"] == "Private room":
