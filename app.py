@@ -32,3 +32,5 @@ def navisa2():
 def getcity(period):
     return periods.getyear(period)
 
+# Eventueel optie voor resort/city hotels
+
