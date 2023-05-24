@@ -3,7 +3,7 @@ import mees
 import felixbestand
 import rhea
 import navisa
-import firstdata
+import periods
 
 app = Flask(__name__)
 
@@ -28,11 +28,9 @@ def rheaethode():
 def navisa2():
     return navisa.methode()
 
-@app.route("/datamees")
-def meesdata():
-    return firstdata.methode()
+@app.route("/<periode>")
+def getcity(period):
+    return periods.getyear(period)
 
-@app.route("/getcity/<city>/<periode>")
-def getcity(city,periode):
-    return firstdata.get_city(city,periode)
+# Eventueel optie voor resort/city hotels
 
