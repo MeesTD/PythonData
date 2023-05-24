@@ -28,7 +28,7 @@ with open('./csv_bestanden/hotel_booking.csv', 'r') as f:
     # maakt nieuwe tabel aan met hotel_booking, id is primary key
     mijncursor.execute('CREATE TABLE hotel_booking(id INT not null AUTO_INCREMENT, PRIMARY KEY (id));')
     # maakt tabel attribuut aan voor jaar, maand en land die overeenkomen met de dataset header
-    mijncursor.execute('ALTER TABLE hotel_booking ADD (arrival_date_year INT, arrival_date_month INT, country VARCHAR(255))')
+    mijncursor.execute('ALTER TABLE hotel_booking ADD (arrival_date_year INT, arrival_date_month VARCHAR(30), country VARCHAR(50))')
 
     # pakt voor elke rij de juiste waarden van jaar, maand en land uit de dataset
     for row in data1:
