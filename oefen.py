@@ -3,32 +3,14 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-totalprice = 0
-counter = 0
-yplot = []
-xplot = []
+def teller(jaar, maand) # de twee gegeven argumenten
+    counter = 0
 
-workDir = './airbnbprices' # pathway naar gewenste map
+    workDir = './csv_bestanden' # pathway naar gewenste map
 
-for file in sorted(os.listdir(workDir)): # geef alle files in map
-    data = pd.read_csv(os.path.join(workDir, file)) # open alle files in map
-    name = os.path.splitext(file)[0][:3] # random comment
-
-    for r,rij in data.iterrows(): # wil je alleen rij naam, moet je een tweede argument toevoegen. 
-        if rij["room_type"] == "Private room":
-            totalprice += rij["realSum"]
+    data = pd.read_csv(os.path.join(workDir, 'hotel_bookings.csv')) 
+    for r,rij in data.iterrows(): 
+        if rij["hotel"] == "City Hotel" and rij["arrival_date_year"] == 2016 and rij["arrival_date_month"] == "January": #bij 2016 moet argument jaar, en bij January argument maand
             counter += 1
-    
-    
-    average = totalprice / counter
-    yplot.append(average)
-    xplot.append(name)
-    lab_x = [i for i in range(len(xplot))]
 
-plt.bar(lab_x, yplot)
-plt.xticks(lab_x, xplot)
-plt.xlabel('City')
-plt.ylabel('Average Prices')
-plt.title('Average Airbnb private room prices per city')
-plt.legend()
-plt.show()
+    return counter
