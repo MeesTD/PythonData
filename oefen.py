@@ -7,7 +7,6 @@ def teller(jaar, maand) # de twee gegeven argumenten
     counter = 0
 
     workDir = './csv_bestanden' # pathway naar gewenste map
-
     data = pd.read_csv(os.path.join(workDir, 'hotel_bookings.csv')) 
     for r,rij in data.iterrows(): 
         if rij["hotel"] == "City Hotel" and rij["arrival_date_year"] == 2016 and rij["arrival_date_month"] == "January": #bij 2016 moet argument jaar, en bij January argument maand
