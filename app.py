@@ -5,6 +5,7 @@ import rhea
 import navisa
 import periods
 
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -28,9 +29,13 @@ def rheaethode():
 def navisa2():
     return navisa.methode()
 
-@app.route("/<periode>")
-def getcity(period):
-    return periods.getyear(period)
+# User enters period, gets amount of reservations in given period as string
+# MIND THAT our database starts in July 2015 and ends at August 2017
+@app.route("/getperiod/<year>/<month>")
+def getmonth(year, month):
+    return periods.getperiod(year, month)
 
-# Eventueel optie voor resort/city hotels
 
+
+# Eventueel optie voor resort/city hotels.
+# 
