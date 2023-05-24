@@ -3,7 +3,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-def teller(jaar, maand) # de twee gegeven argumenten
+def teller(jaar, maand): # de twee gegeven argumenten
     counter = 0
 
     workDir = './csv_bestanden' # pathway naar gewenste map
