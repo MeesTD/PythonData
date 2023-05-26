@@ -5,9 +5,9 @@ import csv
 # verbinding maken met myphpadmin
 dbverbinding = mysql.connector.connect(
     host='localhost',
-    port='3306',
+    port='8889',
     user='root',
-    password='',
+    password='root',
     database='hotel_booking'
 )
 
@@ -40,6 +40,8 @@ with open('./csv_bestanden/hotel_bookings.csv', 'r') as f:
         if i != 0:
             sql_insert_data = 'INSERT INTO hotel_booking (hotel, arrival_date_year, arrival_date_month, arrival_date_day_of_month, meal, adr, date) VALUES (%s, %s, %s, %s, %s, %s, %s);'
             mijncursor.execute(sql_insert_data, (hotel, arrival_date_year, arrival_date_month, arrival_date_day_of_month, meal, adr, date)) # execute(SQL statement, (hier de waarden voor de plekken %s en op volgorde)))
+            # data opsturen naar de database
+            dbverbinding.commit()
     
             # data opsturen naar de database
             dbverbinding.commit()
