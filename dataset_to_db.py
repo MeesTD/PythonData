@@ -5,9 +5,9 @@ import csv
 # verbinding maken met myphpadmin
 dbverbinding = mysql.connector.connect(
     host='localhost',
-    port='8888',
+    port='8889',
     user='root',
-    password='',
+    password='root',
     database='hotel_booking'
 )
 
@@ -37,17 +37,15 @@ with open('./csv_bestanden/hotel_bookings.csv', 'r') as f:
         month = months.get(arrival_date_month)
         date = f"{arrival_date_year}-{month}-{arrival_date_day_of_month}"
         
-        print(date)
-        # voeg wwaarden toe aan de attributen in de tabel voor jaar, maand en land met de waarden die gelijk zijn aan het index nummer op die volgorde op de plek van %s
+        # voeg waarden toe aan de attributen in de tabel voor jaar, maand en land met de waarden die gelijk zijn aan het index nummer op die volgorde op de plek van %s
         
-        if i is not 0:
+        if i != 0:
             sql_insert_data = 'INSERT INTO hotel_booking (hotel, arrival_date_year, arrival_date_month, arrival_date_day_of_month, meal, adr, date) VALUES (%s, %s, %s, %s, %s, %s, %s);'
             mijncursor.execute(sql_insert_data, (hotel, arrival_date_year, arrival_date_month, arrival_date_day_of_month, meal, adr, date)) # execute(SQL statement, (hier de waarden voor de plekken %s en op volgorde)))
+            # data opsturen naar de database
+            dbverbinding.commit()
     
         i += 1
-
-# data opsturen naar de database
-dbverbinding.commit()
 
 # dataverbinding afsluiten
 dbverbinding.close()

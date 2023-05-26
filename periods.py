@@ -1,7 +1,7 @@
-import pandas as pd
+from flask import jsonify
 import os
-import numpy as np
 import mysql.connector
+
 
 # Call this function in Flask to get data
 
@@ -18,19 +18,19 @@ def getperiod(year, month):
     )
     mijncursor = dbverbinding.cursor()
 
-    mijncursor.execute(f"SELECT * FROM hotel_booking WHERE arrival_date_year = {year} AND arrival_date_month = {month}")
+    # Create a variable to hold the SQL statement and fill it with relevant  variables
+    sql_check_data = 'SELECT * FROM hotel_booking WHERE arrival_date_year = %s AND arrival_date_month = %s'
+    mijncursor.execute(sql_check_data, (year, month)) # execute(SQL statement, (hier de waarden voor de plekken %s en op volgorde)
 
     mydata = mijncursor.fetchall()
 
+    # Create the counters and start counting in the SQL table
     counter = 0
     mealcounter = 0
 
     for data in mydata:
         counter += 1
-        if mydata[3] == "BB":
+        if data[5] == 'BB':
             mealcounter += 1
 
-    return(f"In {month} {year} there were {counter} bookings. With {str(mealcounter)} getting breakfast.")
-
-
-getperiod(2015, "July")
+    return jsonify(date = year + ' ' + month, reservations = counter, breakfast = mealcounter)
