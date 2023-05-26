@@ -21,14 +21,18 @@ print(allefietsen)"""
 
 # csv inlezen
 data1 = None
-with open('./csv_bestanden/hotel_booking.csv', 'r') as f:
+with open('./csv_bestanden/hotel_bookings.csv', 'r') as f:
     data1 = csv.reader(f) # pakt alle rijen in een list
     
+
     mijncursor = dbverbinding.cursor() # verbinding maken
+    mijncursor.execute('DROP TABLE IF EXISTS hotel_booking;')
+    mijncursor.execute('CREATE TABLE hotel_booking(id INT not null AUTO_INCREMENT, PRIMARY KEY (id), arrival_date_year INT, arrival_date_month INT, country VARCHAR(255));')
+    
     # maakt nieuwe tabel aan met hotel_booking, id is primary key
-    mijncursor.execute('CREATE TABLE hotel_booking(id INT not null AUTO_INCREMENT, PRIMARY KEY (id));')
+    #mijncursor.execute('CREATE TABLE hotel_booking(id INT not null AUTO_INCREMENT, PRIMARY KEY (id));')
     # maakt tabel attribuut aan voor jaar, maand en land die overeenkomen met de dataset header
-    mijncursor.execute('ALTER TABLE hotel_booking ADD (arrival_date_year INT, arrival_date_month INT, country VARCHAR(255))')
+    #mijncursor.execute('ALTER TABLE hotel_booking ADD (arrival_date_year INT, arrival_date_month INT, country VARCHAR(255))')
 
     # pakt voor elke rij de juiste waarden van jaar, maand en land uit de dataset
     for row in data1:
