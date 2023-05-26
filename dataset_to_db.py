@@ -4,7 +4,7 @@ import csv
 # verbinding maken met myphpadmin
 dbverbinding = mysql.connector.connect(
     host='localhost',
-    port='3306',
+    port='8888',
     user='root',
     password='',
     database='hotel_booking'

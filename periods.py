@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-import matplotlib.pyplot as plt
 import numpy as np
 import mysql.connector
 
@@ -9,6 +8,7 @@ import mysql.connector
 def getperiod(year, month):
 
     # verbinding maken met myphpadmin macbook gegevens
+    # LET OP: Navisa & Mees hebben Macs, dus password is anders
     dbverbinding = mysql.connector.connect(
         host='localhost',
         port='8889',
