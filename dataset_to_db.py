@@ -1,13 +1,14 @@
 from re import M
 import mysql.connector
 import csv
+import windowsgebruik
 
 # verbinding maken met myphpadmin
 dbverbinding = mysql.connector.connect(
     host='localhost',
-    port='8889',
+    port=windowsgebruik.krijgpoort(),
     user='root',
-    password='root',
+    password=windowsgebruik.krijgpoort(),
     database='hotel_booking'
 )
 
