@@ -1,8 +1,7 @@
 from flask import jsonify
 import os
 import mysql.connector
-import gebruikwindows
-
+import windowsgebruik
 
 # Call this function in Flask to get data
 
@@ -12,9 +11,9 @@ def getperiod(year, month):
     # LET OP: Navisa & Mees hebben Macs, dus password is anders
     dbverbinding = mysql.connector.connect(
         host='localhost',
-        port= gebruikwindows.krijgpoort(),
-        user=gebruikwindows.krijgwachtwoord(),
-        password='root',
+        port=windowsgebruik.krijgpoort(),
+        user='root',
+        password=windowsgebruik.krijgwachtwoord(),
         database='hotel_booking'
     )
     mijncursor = dbverbinding.cursor()
