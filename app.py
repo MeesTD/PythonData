@@ -31,6 +31,7 @@ def navisa2():
 
 # User enters period, gets amount of reservations in given period as string
 # MIND THAT our database starts in July 2015 and ends at August 2017
+
 @app.route("/getperiod/<year>/<month>")
 def getmonth(year, month):
     return periods.getperiod(year, month)
