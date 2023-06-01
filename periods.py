@@ -5,7 +5,7 @@ import windowsgebruik
 
 # Call this function in Flask to get data
 
-def getperiod(year, month):
+def getperiod(year, month, day):
 
     # verbinding maken met myphpadmin macbook gegevens
     # LET OP: Navisa & Mees hebben Macs, dus password is anders
@@ -19,8 +19,8 @@ def getperiod(year, month):
     mijncursor = dbverbinding.cursor()
 
     # Create a variable to hold the SQL statement and fill it with relevant variables
-    sql_check_data = 'SELECT * FROM hotel_booking WHERE arrival_date_year = %s AND arrival_date_month = %s'
-    mijncursor.execute(sql_check_data, (year, month)) # execute(SQL statement, (hier de waarden voor de plekken %s en op volgorde)
+    sql_check_data = 'SELECT * FROM hotel_booking WHERE arrival_date_year = %s AND arrival_date_month = %s AND arrival_date_day_of_month = %s'
+    mijncursor.execute(sql_check_data, (year, month, day)) # execute(SQL statement, (hier de waarden voor de plekken %s en op volgorde)
 
     mydata = mijncursor.fetchall()
 
@@ -34,4 +34,4 @@ def getperiod(year, month):
         if data[5] == 'BB':
             mealcounter += 1
 
-    return jsonify(date = year + ' ' + month, reservations = counter, breakfast = mealcounter)
+    return jsonify(date = year + ' ' + month + ' ' + day, reservations = counter, breakfast = mealcounter)
