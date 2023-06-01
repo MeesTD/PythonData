@@ -1,6 +1,7 @@
 from flask import jsonify
 import os
 import mysql.connector
+import gebruikwindows
 
 
 # Call this function in Flask to get data
@@ -11,14 +12,14 @@ def getperiod(year, month):
     # LET OP: Navisa & Mees hebben Macs, dus password is anders
     dbverbinding = mysql.connector.connect(
         host='localhost',
-        port='8889',
-        user='root',
+        port= gebruikwindows.krijgpoort(),
+        user=gebruikwindows.krijgwachtwoord(),
         password='root',
         database='hotel_booking'
     )
     mijncursor = dbverbinding.cursor()
 
-    # Create a variable to hold the SQL statement and fill it with relevant  variables
+    # Create a variable to hold the SQL statement and fill it with relevant variables
     sql_check_data = 'SELECT * FROM hotel_booking WHERE arrival_date_year = %s AND arrival_date_month = %s'
     mijncursor.execute(sql_check_data, (year, month)) # execute(SQL statement, (hier de waarden voor de plekken %s en op volgorde)
 
@@ -28,6 +29,7 @@ def getperiod(year, month):
     counter = 0
     mealcounter = 0
 
+    # Loop over the fetched data and start counting relevant database entries
     for data in mydata:
         counter += 1
         if data[5] == 'BB':
