@@ -12,9 +12,6 @@ dbverbinding = mysql.connector.connect(
     database='hotel_booking'
 )
 
-# als connectie gemaakt is, het geeft niks terug, dan is het goed gelukt. een check.
-print("test")
-
 # csv inlezen
 data1 = None
 with open('./csv_bestanden/hotel_bookings.csv', 'r') as f:
@@ -40,7 +37,7 @@ with open('./csv_bestanden/hotel_bookings.csv', 'r') as f:
         month = months.get(arrival_date_month)
         date = f"{arrival_date_year}-{month}-{arrival_date_day_of_month}"
 
-        if i != 0:
+        if i != 0 and (float(adr) >= 80 and float(adr) <= 250):
             sql_insert_data = 'INSERT INTO hotel_booking (hotel, arrival_date_year, arrival_date_month, arrival_date_day_of_month, meal, adr, date) VALUES (%s, %s, %s, %s, %s, %s, %s);'
             mijncursor.execute(sql_insert_data, (
             hotel, arrival_date_year, arrival_date_month, arrival_date_day_of_month, meal, adr,
