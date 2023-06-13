@@ -1,15 +1,33 @@
-import pandas as pd
+from flask import jsonify
 import os
-import matplotlib.pyplot as plt
-import numpy as np
+import mysql.connector
+import windowsgebruik
+import functools
 
-def teller(jaar, maand): # de twee gegeven argumenten
-    counter = 0
+dbverbinding = mysql.connector.connect(
+    host='localhost',
+    port=windowsgebruik.krijgpoort(),
+    user='root',
+    password=windowsgebruik.krijgwachtwoord(),
+    database='hotel_booking'
+)
 
-    workDir = './csv_bestanden' # pathway naar gewenste map
-    data = pd.read_csv(os.path.join(workDir, 'hotel_bookings.csv')) 
-    for r,rij in data.iterrows(): 
-        if rij["hotel"] == "City Hotel" and rij["arrival_date_year"] == jaar and rij["arrival_date_month"] == maand : #bij 2016 moet argument jaar, en bij January argument maand
-            counter += 1
+mijncursor = dbverbinding.cursor()
 
-    return counter
+    # Create a variable to hold the SQL statement and fill it with relevant variables
+sql_check_data = 'SELECT * FROM hotel_booking'
+mijncursor.execute(sql_check_data) # execute(SQL statement, (hier de waarden voor de plekken %s en op volgorde)
+
+mydata = mijncursor.fetchall()
+
+prijs = 250
+teller = 0
+
+for data in mydata:
+    res = data[6]
+    prijs += res
+    teller += 1
+
+roomprijs = prijs / teller
+
+print(roomprijs)

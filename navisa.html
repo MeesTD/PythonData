@@ -1,0 +1,14 @@
+<h1>test met big data</h1>
+<script>
+    function naardepythondb(){
+        fetch("https://catfact.ninja/fact")
+        .then(abc => abc.json())
+        .then(data => verwerk(data))
+        
+    }
+    function verwerk(datevanserver){
+        document.getElementById("deuitkomst").innerHTML = datevanserver.fact
+    }
+</script>
+<button onclick="naardepythondb()">Klik hier</button>
+<div id="deuitkomst">uitkomst</div>
