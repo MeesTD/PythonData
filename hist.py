@@ -6,7 +6,7 @@ import numpy as np
 
 booking = {}
 
-workDir = './csv_bestanden/airbnbprices' # pathway naar gewenste map
+workDir = './csv_bestanden/hotel_bookings.csv' # pathway naar gewenste map
 for file in os.listdir(workDir):
     data = pd.read_csv(os.path.join(workDir, file)) 
     for r,rij in data.iterrows(): 

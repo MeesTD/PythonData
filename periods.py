@@ -24,14 +24,19 @@ def getperiod(year, month, day):
 
     mydata = mijncursor.fetchall()
 
+    
     # Create the counters and start counting in the SQL table
     counter = 0
     mealcounter = 0
+    price = 0
 
     # Loop over the fetched data and start counting relevant database entries
     for data in mydata:
+        price += int(data[6])
         counter += 1
         if data[5] == 'BB':
             mealcounter += 1
 
-    return jsonify(date = year + ' ' + month + ' ' + day, reservations = counter, breakfast = mealcounter)
+    pricecal = price/counter
+    
+    return jsonify(date = year + ' ' + month + ' ' + day, reservations = counter, breakfast = mealcounter, price = pricecal)
