@@ -3,4 +3,3 @@ __pycache__/**
 .idea/**
 windowsgebruik.py
 Pipfile
-Pipfile.lock
