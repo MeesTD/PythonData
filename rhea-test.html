@@ -2,6 +2,7 @@
 <html>
 <head>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <meta charset="UTF-8">
     <title>Plotly</title>
 </head>
@@ -50,5 +51,39 @@
                 Plotly.newPlot('chart', data, layout);
             });
     </script>
+
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+    <script>
+        window.onload = function() {
+
+        fetch('http://127.0.0.1:5000/getperiod/2016/july/5')
+            .then(response => response.json())
+            .then(jsonData => {
+            var DataPrice = [jsonData["price"]];
+            var DataBreakfast = [jsonData["breakfast"]];
+            var DataReservations = [jsonData["reservations"]];
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Desktop Search Engine Market Share - 2016"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{label} {y}",
+                dataPoints: [
+                    {y: DataPrice, label: "Price"},
+                    {y: DataBreakfast, label: "Breakfast"},
+                    {y: DataReservations, label: "Reservations"},
+                ]
+            }]
+        });
+        chart.render();
+    });
+        }
+        </script>
 </body>
 </html>
