@@ -1,0 +1,18 @@
+<h1>Hier is Rheaaaaa</h1>
+<script>
+    function naardepythondb(){
+        //alert("hij doet het!!!");
+        fetch("http://127.0.0.1:5000/getperiod/2016/june/5")
+        .then(abc => abc.json())
+        //.then(r => console.log(r))
+        .then(data => verwerk(data))
+    }
+
+    function verwerk(datavanserver){
+        console.log(datavanserver);
+        document.getElementById("deuitkomst").innerHTML = `Hallo lieve klant, er zijn voor <b>${datavanserver.date}</b> het volgende plaatgevonden: <b>${datavanserver.reservations} reserveringen</b> en <b>${datavanserver.breakfast} ontbijten</b>`;
+    }
+</script>
+<button onclick="naardepythondb()">Klik hier</button>
+<hr>
+<div id="deuitkomst">uitkomst</div>

@@ -3,7 +3,8 @@ import mees
 import felixbestand
 import rhea
 import navisa
-import periods
+#import periods
+import periods_rhea
 from flask_cors import CORS
 
 
@@ -35,10 +36,12 @@ def navisa2():
 # MIND THAT our database starts in July 2015 and ends at August 2017
 
 @app.route("/getperiod/<year>/<month>/<day>")
-def getmonth(year, month, day):
-    return periods.getperiod(year, month, day)
+def getday(year, month, day):
+    return periods_rhea.getperiod(year, month, day)
 
-
+@app.route("/getperiod/<year>/<month>")
+def getmonth(year, month):
+    return periods_rhea.getperiod_month(year, month)
 
 # Eventueel optie voor resort/city hotels.
 # 

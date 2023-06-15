@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Plotly</title>
+</head>
+<body>
+    <div id="chart"></div>
+
+    <script>
+        fetch('http://127.0.0.1:5000/getperiod/2016/july/5')
+            .then(response => response.json())
+            .then(jsonData => {
+                console.log(jsonData);
+                var xData = [jsonData["date"]];
+                var yDataBreakfast = [jsonData["breakfast"]];
+                var yDataReservations = [jsonData["reservations"]];
+                console.log(xData);
+                console.log(yDataBreakfast);
+                console.log(yDataReservations);
+
+                var traceBreakfast = {
+                    x: xData,
+                    y: yDataBreakfast,
+                    type: 'bar',
+                    name: 'Breakfast'
+                };
+
+                var traceReservations = {
+                    x: xData,
+                    y: yDataReservations,
+                    type: 'bar',
+                    name: 'Reservation'
+                };
+
+                var data = [traceBreakfast, traceReservations];
+                console.log("dataaaaaaa: " + data);
+
+                var layout = {
+                    title: 'Data Chart',
+                    xaxis: {
+                        title: 'X-axis'
+                    },
+                    yaxis: {
+                        title: 'Y-axis'
+                    }
+                };
+
+                Plotly.newPlot('chart', data, layout);
+            });
+    </script>
+</body>
+</html>
