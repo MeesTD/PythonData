@@ -1,6 +1,4 @@
 flask
 matplotlib
-csv
 mysql.connector
-os
 flask_cors
