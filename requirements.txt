@@ -1,6 +1,5 @@
+# Pas hierbij op dat je geen native Python modules hier zet
+# Dan lukt het Docker niet om de modules te installeren
 flask
-matplotlib
-csv
 mysql.connector
-os
 flask_cors
