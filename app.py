@@ -24,6 +24,10 @@ def mees2():
 def felixmethode():
     return felixbestand.methode()
 
+@app.route("/felix2/<datuma>/<datumb>")
+def felixmethode2(datuma, datumb):
+    return felixbestand.methode2(datuma, datumb)
+
 @app.route("/rhea")
 def rheaethode():
     return rhea.methode()

@@ -32,9 +32,48 @@
             Plotly.newPlot('myDiv', data, layout);
         }
         window.onload = haalDataOp;
+        function doen(dedatums, degetallen){
+            var data = [
+            {
+                x: dedatums,
+                y: degetallen,
+                type: 'scatter'
+            }
+            ];
+
+            Plotly.newPlot('myDiv2', data);
+        }
+        function andereKeer(){
+            var enedatum = document.getElementById("startdate").value;
+            var anderedatum = document.getElementById("stopdate").value;
+            fetch("http://127.0.0.1:5000/felix2/"+enedatum+"/"+anderedatum)
+            .then(r=>r.json())
+            .then(d=>verwerkdata2(d))
+        }
+        function verwerkdata2(dedata){
+            console.log(dedata.length);
+            console.log(dedata)
+            lijstjedatums = []
+            lijstjegetal = []
+            
+            for(var x = 0; x < dedata.length; x++){
+                lijstjedatums.push(dedata[x].date);
+                lijstjegetal.push(dedata[x].abc);
+            }
+            console.log(lijstjedatums);
+            console.log(lijstjegetal);
+            doen(lijstjedatums, lijstjegetal);
+        }
     </script>
 </head>
 <body>
     <div id="myDiv"></div>
+    <div id="myDiv2"></div>
+    <input type="date" id="startdate">
+    <input type="date" id="stopdate">
+    <input type="button" value="Zoek Op" onclick="andereKeer()">
+    <script>
+        //andereKeer();
+    </script>
 </body>
 </html>
