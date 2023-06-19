@@ -30,9 +30,9 @@ def getperiod(year, month, day):
 
     # Loop over the fetched data and start counting relevant database entries
     for data in mydata:
-        price += int(data[6])
+        price += int(data[13])
         counter += 1
-        if data[5] == 'BB':
+        if data[12] == 'BB':
             mealcounter += 1
 
     pricecal = price/counter
