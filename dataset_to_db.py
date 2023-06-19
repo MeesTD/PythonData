@@ -8,9 +8,9 @@ try:
 
     # verbinding maken met myphpadmin
     dbverbinding = mysql.connector.connect(
-        host='localhost',
+        host=windowsgebruik.krijgservernaam(),
         port=windowsgebruik.krijgpoort(),
-        user='root',
+        user=windowsgebruik.krijguser(),
         password=windowsgebruik.krijgwachtwoord(),
         database='hotel_booking'
     )

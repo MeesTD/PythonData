@@ -8,9 +8,9 @@ import windowsgebruik
 # verbinding maken met myphpadmin macbook gegevens
 # LET OP: Navisa & Mees hebben Macs, dus password is anders
 dbverbinding = mysql.connector.connect(
-    host='localhost',
+    host=windowsgebruik.krijgservernaam(),
     port=windowsgebruik.krijgpoort(),
-    user='root',
+    user=windowsgebruik.krijguser(),
     password=windowsgebruik.krijgwachtwoord(),
     database='hotel_booking'
 )
