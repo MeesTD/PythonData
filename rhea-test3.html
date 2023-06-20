@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        function doen(lijstjedatums, lijstjesadults, lijstjeschildren, lijstjesbabies) {
+            var trace1 = {
+                x: lijstjedatums,
+                y: lijstjesadults,
+                name: 'adults',
+                type: 'bar'
+            };
+
+            var trace2 = {
+                x: lijstjedatums,
+                y: lijstjeschildren,
+                name: 'children',
+                type: 'bar'
+            };
+
+            var trace3 = {
+                x: lijstjedatums,
+                y: lijstjesbabies,
+                name: 'babies',
+                type: 'bar'
+            };
+
+            var data = [trace1, trace2, trace3];
+
+            var layout = { barmode: 'group' };
+
+            Plotly.newPlot('myDiv', data, layout);
+        }
+
+        function haalDataOp() {
+            var enedatum = document.getElementById("startdate").value;
+            var anderedatum = document.getElementById("stopdate").value;
+
+            fetch("http://127.0.0.1:5000/rhea2/" + enedatum + "/" + anderedatum)
+                .then(r => r.json())
+                .then(d => verwerkdata(d))
+        }
+
+        function verwerkdata(dedata) {
+            console.log(dedata);
+            lijstjedatums = [];
+            lijstjesadults = [];
+            lijstjeschildren = [];
+            lijstjesbabies = [];
+            let counter = 0;
+            dedata.forEach(function(entry){
+                lijstjedatums.push(entry.date);
+                lijstjesadults.push(entry.adults);
+                lijstjeschildren.push(entry.children);
+                lijstjesbabies.push(entry.babies);
+                counter++;
+                if(counter > 10){
+                    console.log("meer dan 10");
+                    break;
+                }
+            });
+
+            console.log(lijstjedatums);
+            console.log(lijstjesadults);
+            console.log(lijstjeschildren);
+            console.log(lijstjesbabies);
+            doen(lijstjedatums, lijstjesadults, lijstjeschildren, lijstjesbabies)
+/*
+        function verwerkdata(dedata) {
+            console.log(dedata);
+            lijstjedatums = []
+            lijstjesadults = []
+            lijstjeschildren = []
+            lijstjesbabies = []
+            for (var x = 0; x < 10; x++) {
+                lijstjedatums.push(dedata[x].date)
+                lijstjesadults.push(dedata[x].adults)
+                lijstjeschildren.push(dedata[x].children)
+                lijstjesbabies.push(dedata[x].babies)
+            }
+            console.log(lijstjedatums);
+            console.log(lijstjesadults);
+            console.log(lijstjeschildren);
+            console.log(lijstjesbabies);
+            doen(lijstjedatums, lijstjesadults, lijstjeschildren, lijstjesbabies)
+        }
+        /*
+    </script>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+
+    <input type="date" id="startdate">
+    <input type="date" id="stopdate">
+
+    <input type="button" value="Zoek Op" onclick="haalDataOp()">
+    <script>
+        //haalDataOp();
+    </script>
+</body>
+
+</html>
