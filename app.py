@@ -49,6 +49,6 @@ def getmonth(year, month):
 
 # App route that allows checking of price of given booking against avg in database
 # True if less than avg, False if more than avg.
-@app.route("checkprice/start/end/price")
+@app.route("/checkprice/<start>/<end>/<price>")
 def checkprice(start, end, price):
-    return pricecheck(start, end, price)
+    return pricecheck.price_check(start, end, price)
