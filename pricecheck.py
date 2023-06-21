@@ -58,6 +58,6 @@ def price_check(start, end, paid):
     booking = pricebooking/len(dates)
     difference = booking - int(paid)
     if difference:
-        return True
+        return "true"
     else:
-        return False
+        return "false"
