@@ -10,8 +10,8 @@ import calendar
 def price_check(start, end, paid):
 
     # Call this function in Flask to get data
-    sdate = start
-    edate = end
+    sdate = datetime.date(datetime.strptime(start , "%Y-%m-%d"))
+    edate = datetime.date(datetime.strptime(end , "%Y-%m-%d"))
     dates = []
     pricebooking = 0
 
@@ -56,7 +56,7 @@ def price_check(start, end, paid):
         pricebooking += pricecal
 
     booking = pricebooking/len(dates)
-    difference = booking - paid
+    difference = booking - int(paid)
     if difference:
         return True
     else:
