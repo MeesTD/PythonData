@@ -1,5 +1,5 @@
 from flask import Flask
-import mees
+import mees as mees
 import felixbestand
 import rhea
 import navisa
@@ -15,10 +15,13 @@ CORS(app)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-
 @app.route("/mees")
-def mees2():
-    return mees.methode()
+def mees1():
+    return mees.show()
+
+@app.route("/mees2/<datuma>/<datumb>")
+def mees2(datuma, datumb):
+    return mees.plot(datuma, datumb)
 
 @app.route("/felix")
 def felixmethode():
