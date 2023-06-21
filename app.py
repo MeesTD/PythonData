@@ -6,6 +6,7 @@ import navisa
 #import periods
 import periods_rhea
 from flask_cors import CORS
+import pricecheck
 
 
 app = Flask(__name__)
@@ -43,5 +44,8 @@ def getday(year, month, day):
 def getmonth(year, month):
     return periods_rhea.getperiod_month(year, month)
 
-# Eventueel optie voor resort/city hotels.
-# 
+# App route that allows checking of price of given booking against avg in database
+# True if less than avg, False if more than avg.
+@app.route("checkprice/start/end/price")
+def checkprice(start, end, price):
+    return pricecheck(start, end, price)
