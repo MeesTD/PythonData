@@ -42,12 +42,11 @@ def price_check(start, end, paid):
 
         # Create the counters and start counting in the SQL table
         counter = 0
-        mealcounter = 0
         price = 0
 
-        # Loop over the fetched data and start counting relevant database entries
+    # Loop over the fetched data and start counting relevant database entries
         for data in mydata:
-            price += int(data[6])
+            price += int(data[13])
             counter += 1
             if data[5] == 'BB':
                 mealcounter += 1
