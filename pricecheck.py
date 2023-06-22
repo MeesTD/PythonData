@@ -57,7 +57,7 @@ def price_check(start, end, paid):
 
     # Compare adr of data to adr of paid amount
     booking = pricebooking/len(dates)
-    paid_adr = paid/len(dates)
+    paid_adr = int(paid)/len(dates)
     difference = booking - paid_adr
     if difference >= 0:
         return "true"
