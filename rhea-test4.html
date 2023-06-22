@@ -1,0 +1,53 @@
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        function plot(datums, getallen){
+            var data = [
+
+    {
+        // Dates
+        x: datums,
+        // Lead time
+        y: getallen,
+
+        type: 'scatter'
+
+    }
+
+    ];
+
+
+    Plotly.newPlot('myDiv2', data);
+
+        }
+        function ophalen() {
+            var startdate = document.getElementById("startdate").value;
+            var stopdate = document.getElementById("stopdate").value;
+            fetch("http://127.0.0.1:5000/mees2/"+startdate+'/'+stopdate)
+            .then(r=>r.json())
+            .then(d=>plot2(d))
+        }
+        function plot2(dedata){
+            console.log(dedata)
+            lijstdatums = []
+            lijstgetal = []
+            for (var x = 0; x < dedata.length; x++){
+                lijstdatums.push(dedata[x].date);
+                lijstgetal.push(dedata[x].lead)
+            }
+            console.log(lijstdatums)
+            console.log(lijstgetal)
+            plot(lijstdatums, lijstgetal)
+        }
+    </script>
+</head>
+<body>
+    <div id = "myDiv">Test</div>
+    <div id='myDiv2'>
+    </div>
+    StartDatum
+    <input type ="date" id ="startdate">
+    EindDatum
+    <input type ="date" id ="stopdate">
+    <input type ="button" value = "Zoek op" onclick="ophalen()">
+</body>

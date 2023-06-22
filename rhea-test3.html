@@ -45,38 +45,15 @@
                 .then(d => verwerkdata(d))
         }
 
-        function verwerkdata(dedata) {
-            console.log(dedata);
-            lijstjedatums = [];
-            lijstjesadults = [];
-            lijstjeschildren = [];
-            lijstjesbabies = [];
-            let counter = 0;
-            dedata.forEach(function(entry){
-                lijstjedatums.push(entry.date);
-                lijstjesadults.push(entry.adults);
-                lijstjeschildren.push(entry.children);
-                lijstjesbabies.push(entry.babies);
-                counter++;
-                if(counter > 10){
-                    console.log("meer dan 10");
-                    break;
-                }
-            });
 
-            console.log(lijstjedatums);
-            console.log(lijstjesadults);
-            console.log(lijstjeschildren);
-            console.log(lijstjesbabies);
-            doen(lijstjedatums, lijstjesadults, lijstjeschildren, lijstjesbabies)
-/*
+
         function verwerkdata(dedata) {
             console.log(dedata);
             lijstjedatums = []
             lijstjesadults = []
             lijstjeschildren = []
             lijstjesbabies = []
-            for (var x = 0; x < 10; x++) {
+            for (var x = 0; x < 500; x++) {
                 lijstjedatums.push(dedata[x].date)
                 lijstjesadults.push(dedata[x].adults)
                 lijstjeschildren.push(dedata[x].children)
@@ -88,7 +65,7 @@
             console.log(lijstjesbabies);
             doen(lijstjedatums, lijstjesadults, lijstjeschildren, lijstjesbabies)
         }
-        /*
+
     </script>
 </head>
 
